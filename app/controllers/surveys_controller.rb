@@ -21,9 +21,19 @@ class SurveysController < ApplicationController
     end
   end
 
+  # Acción para mostrar todos los formularios
+  def index
+    @surveys = Survey.all
+  end
+
+  # Acción para mostrar los detalles de un formulario específico
+  def show
+    @survey = Survey.find(params[:id])
+  end
+
   private
 
   def survey_params
-    params.require(:survey).permit(:name, :description, :processed_in_job)
+    params.require(:survey).permit(:name, :description, :processed_in_job, :email)
   end
 end

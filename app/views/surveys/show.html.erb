@@ -1,0 +1,29 @@
+<%= content_for :title, "Ver Formulario: #{@survey.name}" %>
+
+<h1 class="text-4xl font-bold text-center my-8 text-gray-800">Formulario: <%= @survey.name %></h1>
+
+<div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+  <h2 class="text-3xl font-semibold text-gray-800 mb-4">Descripción</h2>
+  <p class="text-gray-600 mb-6"><%= @survey.description %></p>
+
+  <div class="mb-6">
+    <h3 class="text-xl font-semibold text-gray-800">Estado:</h3>
+    <p class="text-lg <%= @survey.processed_in_job ? 'text-blue-600' : 'text-green-600' %>">
+      <%= @survey.processed_in_job ? "En Proceso" : "Procesado" %>
+    </p>
+  </div>
+
+  <div class="space-y-4">
+    <h3 class="text-xl font-semibold text-gray-800">Respuestas:</h3>
+    <% @survey.responses.each do |response| %>
+      <div class="bg-gray-100 p-4 rounded-lg">
+        <p class="text-gray-700">Pregunta: <%= response.question %></p>
+        <p class="text-gray-600">Respuesta: <%= response.answer %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mt-6">
+    <%= link_to 'Volver al listado de formularios', surveys_path, class: "text-blue-500 hover:text-blue-700 transition" %>
+  </div>
+</div>
