@@ -1,34 +1,37 @@
 <%# app/views/surveys/new.html.erb %>
 
-<%= render 'layouts/navbar' %>
+<h1 class="text-4xl font-bold text-center text-blue-600 my-12">Crea un Nuevo Formulario</h1>
 
-<div class="max-w-4xl mx-auto p-6 bg-white shadow-xl rounded-lg mt-10">
-  <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Crea un Nuevo Formulario</h1>
-  
-  <%= form_with model: @survey, local: true, class: "space-y-6" do |form| %>
-    
-    <div class="space-y-2">
-      <%= form.label :name, "Nombre del Formulario", class: "block text-gray-700 font-semibold" %>
-      <%= form.text_field :name, class: "w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500", placeholder: "Escribe el nombre del formulario" %>
-    </div>
+<%= form_with(model: @survey, local: true) do |form| %>
+  <div class="flex justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-lg">
+      
+      <div class="mb-6">
+        <%= form.label :name, class: "block text-blue-600 text-lg mb-2" %>
+        <%= form.text_field :name, class: "w-full p-4 border-2 border-blue-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      </div>
 
-    <div class="space-y-2">
-      <%= form.label :description, "Descripción del Formulario", class: "block text-gray-700 font-semibold" %>
-      <%= form.text_area :description, class: "w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500", placeholder: "Describe el propósito del formulario", rows: 4 %>
-    </div>
-    
-    <div class="space-y-2">
-      <%= form.label :email, "Correo Electrónico", class: "block text-gray-700 font-semibold" %>
-      <%= form.email_field :email, class: "w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500", placeholder: "Escribe tu correo electrónico" %>
-    </div>
-    
-    <div class="flex items-center space-x-4">
-      <%= form.check_box :processed_in_job, id: "processed_in_job", class: "text-blue-500" %>
-      <%= form.label :processed_in_job, "Procesar en segundo plano", class: "text-gray-700" %>
-    </div>
+      <div class="mb-6">
+        <%= form.label :description, class: "block text-blue-600 text-lg mb-2" %>
+        <%= form.text_area :description, class: "w-full p-4 border-2 border-blue-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      </div>
 
-    <div class="flex justify-center">
-      <%= form.submit "Crear Formulario", class: "w-full bg-blue-500 text-white font-semibold py-3 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      <div class="mb-6">
+        <%= form.label :email, class: "block text-blue-600 text-lg mb-2" %>
+        <%= form.email_field :email, class: "w-full p-4 border-2 border-blue-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      </div>
+
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center">
+          <%= form.check_box :processed_in_job, class: "h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500" %>
+          <%= form.label :processed_in_job, "Procesar en segundo plano", class: "ml-2 text-blue-600" %>
+        </div>
+      </div>
+
+      <div class="flex justify-center">
+        <%= form.submit "Crear Formulario", class: "px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300" %>
+      </div>
+      
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>

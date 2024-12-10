@@ -1,18 +1,15 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # Rutas para la salud de la aplicación
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/*
+  # Rutas para el servicio PWA (opcional)
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  # Set the root path to the surveys index (formularios)
-  root "surveys#index"  # Aquí hacemos que la ruta principal apunte a los formularios
+  # Rutas para los formularios
+  resources :surveys, only: [:index, :new, :create]  # Puedes agregar las rutas para "show", "edit", etc., si las necesitas
 
-  # Routes for Surveys
-  resources :surveys, only: [:new, :create, :index, :show]  # Añadimos rutas para index y show
+  # Define la ruta raíz (la página de inicio)
+  root to: 'surveys#index'  # Establece "Todos los formularios" como la página de inicio
 
 end
