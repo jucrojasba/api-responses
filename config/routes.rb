@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Rutas para los formularios
-  resources :surveys, only: [:index, :new, :create]  # Puedes agregar las rutas para "show", "edit", etc., si las necesitas
+  resources :surveys, only: [:index, :new, :create, :show]  # Puedes agregar las rutas para "show", "edit", etc., si las necesitas
 
   # Define la ruta raíz (la página de inicio)
   root to: 'surveys#index'  # Establece "Todos los formularios" como la página de inicio
